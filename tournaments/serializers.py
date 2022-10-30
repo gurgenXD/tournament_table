@@ -1,11 +1,15 @@
-from django.db import transaction
-from django.utils import timezone
 from rest_framework import serializers
 
 from tournaments.models import Tournament
 
 
-class TournamentsReadSerializer(serializers.ModelSerializer):
+class TournamentCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tournament
-        fields = "__all__"
+        fields = ["name"]
+
+
+class TournamentReadSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tournament
+        fields = ["id", "name", "status"]
