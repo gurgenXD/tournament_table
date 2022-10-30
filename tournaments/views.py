@@ -1,3 +1,4 @@
+from django.http import Http404
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
 from rest_framework.response import Response
@@ -29,3 +30,16 @@ class TournamentList(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class TournamentDetail(APIView):
+    @swagger_auto_schema(responses={status.HTTP_200_OK: TournamentReadSerializer()})
+    def get(self, _request, pk):
+        """Получить турнир."""
+        try:
+            tournament = Tournament.objects.get(pk=pk)
+        except Tournament.DoesNotExist:
+            raise Http404
+
+        serializer = TournamentReadSerializer(tournament)
+        return Response(serializer.data, status=status.HTTP_200_OK)

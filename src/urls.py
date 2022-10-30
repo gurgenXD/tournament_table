@@ -17,7 +17,7 @@ from django.urls import path
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 
-from tournaments.views import TournamentList
+from tournaments.views import TournamentDetail, TournamentList
 
 schema_view = get_schema_view(
     openapi.Info(title="Tournament Table API", default_version="v1")
@@ -29,4 +29,5 @@ urlpatterns = [
 
 urlpatterns += [
     path("api/tournaments/", TournamentList.as_view(), name="tournaments"),
+    path("api/tournament/<pk>/", TournamentDetail.as_view(), name="tournament"),
 ]

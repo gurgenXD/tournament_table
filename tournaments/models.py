@@ -9,7 +9,7 @@ class Tournament(models.Model):
         ACTIVE = "ACTIVE"
         FINISHED = "FINISHED"
 
-    name = models.CharField(max_length=64)
+    name = models.CharField(max_length=64, unique=True)
     status = models.CharField(
         max_length=8,
         choices=TournamentStatuses.choices,
