@@ -19,8 +19,8 @@ urlpatterns += [
     # Команды
     path("api/teams", TeamList.as_view(), name="teams"),
     # Турниры
-    # path("api/tournaments", TournamentList.as_view(), name="tournaments"),
-    # path("api/tournaments/<pk>", TournamentDetail.as_view(), name="tournament"),
+    path("api/tournaments", TournamentList.as_view(), name="tournaments"),
+    path("api/tournaments/<pk>", TournamentDetail.as_view(), name="tournament"),
     # path(
     #     "api/tournaments/<pk>/team",
     #     TeamRegistration.as_view(),
