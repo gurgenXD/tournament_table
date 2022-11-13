@@ -16,8 +16,8 @@ class Tournament(models.Model):
         choices=TournamentStatuses.choices,
         default=TournamentStatuses.OPENED,
     )
-    teams = models.ManyToManyField(
-        "Team", related_name="tournaments", db_table="tournaments_teams"
+    participants = models.ManyToManyField(
+        "Team", related_name="tournaments", db_table="tournaments_participants"
     )
 
     class Meta:
