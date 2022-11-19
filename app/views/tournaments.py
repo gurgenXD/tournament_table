@@ -5,9 +5,10 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from app.models.teams import Team
-from app.models.tournaments import Tournament
+from app.models.tournaments import Tournament, TournamentStatuses
 from app.serializers.tournaments import (TournamentSerializer,
-                                         TournamentStartSerializer)
+                                         TournamentStartSerializer,
+                                         TournamentTableSerializer)
 
 
 class TournamentList(APIView):
@@ -61,7 +62,6 @@ class TournamentDetail(APIView):
 class TournamentParticipantDetail(APIView):
     def post(self, _request, id, team_id):
         """Добавление участника на турнир."""
-
         tournament = get_object_or_404(Tournament, id=id)
         team = get_object_or_404(Team, id=team_id)
 
@@ -70,9 +70,21 @@ class TournamentParticipantDetail(APIView):
 
     def delete(self, _request, id, team_id):
         """Удаление участника из турнира."""
-
         tournament = get_object_or_404(Tournament, id=id)
         team = get_object_or_404(Team, id=team_id)
 
         tournament.participants.remove(team)
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class TournamentTableDetail(APIView):
+    @swagger_auto_schema(responses={status.HTTP_200_OK: TournamentTableSerializer()})
+    def get(self, _request, id):
+        """Получить турнирную таблицу."""
+        tournament = get_object_or_404(
+            Tournament, id=id, status=TournamentStatuses.ACTIVE
+        )
+
+        serializer = TournamentTableSerializer(tournament)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)

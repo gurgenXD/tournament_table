@@ -14,3 +14,14 @@ class TournamentStartSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tournament
         fields = ["status"]
+
+
+class TournamentTableSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tournament
+        fields = [
+            "id",
+            "name",
+            "status",
+            "participants",
+        ]

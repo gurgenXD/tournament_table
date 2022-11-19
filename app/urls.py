@@ -3,7 +3,8 @@ from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 
 from app.views import (TeamList, TournamentDetail, TournamentList,
-                       TournamentParticipantDetail, UserList)
+                       TournamentParticipantDetail, TournamentTableDetail,
+                       UserList)
 
 schema_view = get_schema_view(
     openapi.Info(title="Tournament Table API", default_version="1.0.0")
@@ -25,5 +26,10 @@ urlpatterns += [
         "api/tournaments/<id>/participants/<team_id>",
         TournamentParticipantDetail.as_view(),
         name="tournament_participant",
+    ),
+    path(
+        "api/tournaments/<id>/table",
+        TournamentTableDetail.as_view(),
+        name="tournament_table",
     ),
 ]
