@@ -10,7 +10,7 @@ class Command(BaseCommand):
         parser.add_argument("teams_count", type=int)
 
     def handle(self, *args, **options):
-        """Создать команды."""
+        """Сгенерировать данные."""
         try:
             tournament, _ = Tournament.objects.update_or_create(
                 name="Tournament1", defaults={"status": TournamentStatuses.ACTIVE}
