@@ -2,9 +2,14 @@ from django.urls import path
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 
-from app.views import (TeamList, TournamentDetail, TournamentList,
-                       TournamentParticipantDetail, TournamentTableDetail,
-                       UserList)
+from app.views import (
+    TeamList,
+    TournamentDetail,
+    TournamentList,
+    TournamentParticipantDetail,
+    TournamentTableDetail,
+    UserList,
+)
 
 schema_view = get_schema_view(
     openapi.Info(title="Tournament Table API", default_version="1.0.0")

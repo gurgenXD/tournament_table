@@ -1,8 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 
-from app.models.teams import Team
-from app.models.tournaments import Tournament, TournamentStatuses
-from app.models.users import User
+from app.models import Team, Tournament, TournamentStatuses, User
 
 
 class Command(BaseCommand):

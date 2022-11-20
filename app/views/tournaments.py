@@ -4,11 +4,12 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from app.models.teams import Team
-from app.models.tournaments import Tournament, TournamentStatuses
-from app.serializers.tournaments import (TournamentSerializer,
-                                         TournamentStartSerializer,
-                                         TournamentTableSerializer)
+from app.models import Team, Tournament, TournamentStatuses
+from app.serializers.tournaments import (
+    TournamentSerializer,
+    TournamentStartSerializer,
+    TournamentTableSerializer,
+)
 
 
 class TournamentList(APIView):

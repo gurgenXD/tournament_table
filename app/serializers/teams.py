@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from app.models.teams import Team
+from app.models import Team
 from app.validators import validate_players_count
 
 
