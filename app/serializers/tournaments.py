@@ -1,4 +1,4 @@
-from collections import defaultdict
+from itertools import groupby
 
 from rest_framework import serializers
 
@@ -60,13 +60,8 @@ class TournamentTableSerializer(serializers.ModelSerializer):
         ]
 
     def get_stages(self, obj):
-        data = defaultdict(list)
-
-        for item in obj.matches.all():
-            data[item.stage].append(item)
-
         pre_data = []
-        for number, matches in data.items():
-            pre_data.append({"number": number, "matches": matches})
+        for number, matches in groupby(obj.matches.all(), key=lambda x: x.stage):
+            pre_data.append({"number": number, "matches": list(matches)})
 
         return TournamentStageSerializer(pre_data, many=True).data
