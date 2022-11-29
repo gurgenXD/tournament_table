@@ -7,12 +7,12 @@ from app.views import (
     TournamentDetail,
     TournamentList,
     TournamentParticipantDetail,
-    TournamentTableDetail,
     UserList,
 )
 
 schema_view = get_schema_view(
-    openapi.Info(title="Tournament Table API", default_version="1.0.0")
+    info=openapi.Info(title="Tournament Table API", default_version="1.0.0"),
+    public=True,
 )
 
 urlpatterns = [
@@ -31,10 +31,5 @@ urlpatterns += [
         "api/tournaments/<id>/participants/<team_id>",
         TournamentParticipantDetail.as_view(),
         name="tournament_participant",
-    ),
-    path(
-        "api/tournaments/<id>/table",
-        TournamentTableDetail.as_view(),
-        name="tournament_table",
     ),
 ]

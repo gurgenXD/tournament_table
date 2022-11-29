@@ -12,12 +12,6 @@ class TournamentSerializer(serializers.ModelSerializer):
         read_only_fields = ["id", "status"]
 
 
-class TournamentStartSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Tournament
-        fields = ["status"]
-
-
 class TournamentParticipantSerializer(serializers.Serializer):
     id = serializers.IntegerField()
     score = serializers.IntegerField()
